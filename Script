@@ -26,7 +26,7 @@ public class NumWizz : MonoBehaviour
 		// NextGuessy();  --->  Tried recursive
 		 maxy = 500;
 		 miny = 0;
-		 guessy = 250;
+		 GuessNext();
 		maxy = maxy + 1;
 		
 			
@@ -48,7 +48,9 @@ public class NumWizz : MonoBehaviour
 	void GuessNext () 
 	
 	{
-		guessy = (maxy + miny)/2;
+	
+	
+		guessy = Random.Range(miny, maxy+1); // --- > Since it wont take the max (excluding) term,,---> see the documentation
 		contr.text = guessy.ToString();
 		MaxyGuess = MaxyGuess - 1;
 		if (MaxyGuess <= 0)
@@ -62,5 +64,4 @@ public class NumWizz : MonoBehaviour
 	
 
 }
-
 

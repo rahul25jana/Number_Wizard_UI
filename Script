@@ -1,29 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.SceneManagement;
+using System.Collections;
+using UnityEngine.UI;
 
-
-
-public class Level_Manager : MonoBehaviour
-
-  {
-
-public void LoadLevel (string name)
-
-{
-Debug.Log (" Level Load Requested : " + name );
-Application.LoadLevel(name);  								//	imp -> look for, which level to load in unity. You can also pass load level( Index) here. But
-//SceneManager.LoadScene(name);
-
-
-}
-
-public void CloseGame ()
-
-{
-Debug.Log (" Close the Game Request : ");
-}
+public class NumWizz : MonoBehaviour
+ {
+	int maxy ;
+	int miny  ;
+	int guessy ;
+	
+	public Text contr ;
+	
+	
+	
+	public int MaxyGuess = 5;
+	
+	// Use this for initialization
+	void Start () 
+	{
+		StartGam();
+	}
+	
+	void StartGam ()
+	
+	{
+		// NextGuessy();  --->  Tried recursive
+		 maxy = 500;
+		 miny = 0;
+		 guessy = 250;
+		maxy = maxy + 1;
+		
+			
+	}
+		 
+	public void HighGuess ()
+	{
+		miny = guessy;
+		GuessNext();
+	} 
+	
+	public void LowGuess ()
+	{
+		maxy = guessy;
+		GuessNext();
+		
+	}
+	
+	void GuessNext () 
+	
+	{
+		guessy = (maxy + miny)/2;
+		contr.text = guessy.ToString();
+		MaxyGuess = MaxyGuess - 1;
+		if (MaxyGuess <= 0)
+		
+		{
+		Application.LoadLevel("Win");
+		}
+		
+		
+	}
 	
 
 }
+
+
